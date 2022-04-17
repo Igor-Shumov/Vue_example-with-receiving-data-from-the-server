@@ -31,12 +31,15 @@ export default {
         const res = await fetch("https://jsonplaceholder.typicode.com/users?_limit=5");
         const users = await res.json();
         this.users = users;
+        this.$store.state.users = users;
+        console.log(this.$store.state.users)
       } catch (e) {
         alert("Ошибка получения данных");
       }
     },
     PageNumber(id) {
       this.page = id;
+      this.$store.state.page = this.page;
     },
   },
   mounted() {

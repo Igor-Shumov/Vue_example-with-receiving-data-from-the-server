@@ -14,11 +14,8 @@ export default createStore({
     setPage(state, page) {
       state.page = page;
     },
-    PageNumber(state) {
-      state.page = this.id
-    }
   }
 });
 /* {{$store.state.page }} 
-    $store.commit('')
+    $store.commit('setPage')
 */

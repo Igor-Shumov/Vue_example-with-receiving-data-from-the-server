@@ -2,7 +2,7 @@
   <div class="buttons">
     <button class="btn primary" v-if="btnDown" @click="PageDown()" :disabled="page === 1">Назад</button>
     <button class="btn primary" @click="PageUp()" v-if="btnUp.length">
-      {{ page === users ? btnUp = "Закончить" : btnUp }}
+      {{ page === users ? "Закончить" : btnUp }}
     </button>
     <button class="btn primary" v-if="btnRestart" @click="PageRestart()">Начать сначала</button>
   </div>
