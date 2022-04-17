@@ -1,20 +1,30 @@
 <template>
-  <div>
     <div class="list" v-for="user in users" :key="user">
       <p class="list-item">
         ID: <a class="item">{{ user.id }}</a>
       </p>
-      <p class="list-item">Name: <a class="item">{{ user.name }}</a></p>
-      <p class="list-item">Email: <a class="item">{{ user.email }}</a></p>
-      <p class="list-item">Phone: <a class="item">{{ user.phone }}</a></p>
-      <p class="list-item">Website: <a class="item">{{ user.website }}</a></p>
+      <p class="list-item">
+        Name: <a class="item">{{ user.name }}</a>
+      </p>
+      <p class="list-item">
+        Email: <a class="item">{{ user.email }}</a>
+      </p>
+      <p class="list-item">
+        Phone: <a class="item">{{ user.phone }}</a>
+      </p>
+      <p class="list-item">
+        Website: <a class="item">{{ user.website }}</a>
+      </p>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  props: ["users"],
+  props: {
+    users:{
+
+    }
+  },
 };
 </script>
 <style scoped>
@@ -28,7 +38,7 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   color: #3eaf7c;
-  font-weight: 500;
+  font-weight: 800;
 }
 
 .item {

@@ -4,28 +4,24 @@
       <h1>JSON Placeholder</h1>
       <div class="list">
         <user-card :users="UserPage" />
-        <user-button :users="users" :page="page" @newId="PageNumber"/>
+        <user-buttons :users="users" :page="page" @newId="PageNumber" />
       </div>
-      <div class="card">
-        <button class="btn primary" v-if="page!==5" @click="page--" :disabled="page <= 1">{{ btnDown }}</button>
-        <button class="btn primary" @click="PageUp()">{{ page > 4 ? btnUp="Начать сначала" : btnUp="Вперед" }}</button>
-      </div>
+      <nav-buttons :page="page" @PageChange="PageNumber" :users="users.length"/>
     </div>
   </div>
 </template>
 
 <script>
 import UserCard from "./components/UserCard.vue";
-import UserButton from "./components/UserButton.vue";
+import UserButtons from "./components/UserButtons.vue";
+import NavButtons from "./components/NavButtons.vue";
 
 export default {
   name: "App",
-  components: { UserCard, UserButton },
+  components: { UserCard, UserButtons, NavButtons },
   data() {
     return {
       users: [],
-      btnUp: "Вперед",
-      btnDown: "Назад",
       page: 1,
     };
   },
@@ -36,15 +32,11 @@ export default {
         const users = await res.json();
         this.users = users;
       } catch (e) {
-        alert("Ошибка");
+        alert("Ошибка получения данных");
       }
     },
     PageNumber(id) {
       this.page = id;
-    },
-    PageUp() {
-      if (this.btnUp === "Начать сначала") (this.page = 1), (this.btnUp = "Вперед");
-      else this.page++;
     },
   },
   mounted() {
@@ -54,10 +46,8 @@ export default {
   computed: {
     UserPage() {
       return this.users.filter((item) => item.id === this.page);
+      
     },
   },
 };
 </script>
-
-<style>
-</style>

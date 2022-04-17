@@ -1,60 +1,48 @@
 <template>
-  <div class="container">
-    <div class="btngroup" v-for="user in users" :key="user">
-      <button class="btn" @click="ChangeId(user.id)" :class="{ active: user.id === page, unactive:user.id!==page}">
-        {{ user.id }}
-      </button>
-      <span> {{ user.username }} </span>
-    </div>
-  </div>
+  <button class="btn" :class="{ active: id === page, deactive: Viewed }">
+    {{ id }}
+  </button>
+  <span> {{ username }} </span>
 </template>
 
 <script>
 export default {
-  props: ["users", "page"],
+  props: {
+    id: {},
+    username: {},
+    page: {},
+  },
   data() {
     return {
-      pageNumber: this.page,
-      IdButton: 1,
+      Viewed: false,
     };
   },
 
-  methods: {
-    ChangeId(id) {
-      this.IdButton = id;
-      this.$emit("newId", this.IdButton);
-    },
+  updated() {
+    if (this.id === 1) this.Viewed = true;
+    else if (this.id === this.page) this.Viewed = true;
   },
 };
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-}
-
-.btngroup {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-}
 .btn {
   padding: 5px 10px;
-}
-
-.active {
-  background-color: #3eaf7c;
-  color: #fff;
-}
-
-.unative {
   background: #eee;
   border-color: #ddd;
   color: #999;
+  font-weight: 300;
+}
+
+.active {
+  background-color: #3eaf7c !important;
+  color: #fff !important;
+  font-weight: 700 !important;
 }
 
 .deactive {
   background-color: #3eaf7c;
   color: #000;
+  font-weight: 300;
 }
 </style>

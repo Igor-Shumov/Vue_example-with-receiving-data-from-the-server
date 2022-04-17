@@ -98,10 +98,7 @@ h3 {
   box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.btn.primary {
-  background: #42b983;
-  color: #fff;
-}
+
 
 .btn.danger {
   background: #e53935;
