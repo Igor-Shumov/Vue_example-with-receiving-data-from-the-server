@@ -1,31 +1,25 @@
 <template>
-    <div class="list" v-for="user in users" :key="user">
-      <p class="list-item">
-        ID: <a class="item">{{ user.id }}</a>
-      </p>
-      <p class="list-item">
-        Name: <a class="item">{{ user.name }}</a>
-      </p>
-      <p class="list-item">
-        Email: <a class="item">{{ user.email }}</a>
-      </p>
-      <p class="list-item">
-        Phone: <a class="item">{{ user.phone }}</a>
-      </p>
-      <p class="list-item">
-        Website: <a class="item">{{ user.website }}</a>
-      </p>
-    </div>
+  <div class="list" v-for="user in $store.getters.UserPage" :key="user">
+    <p class="list-item">
+      ID: <a class="item">{{ user.id }}</a>
+    </p>
+    <p class="list-item">
+      Name: <a class="item">{{ user.name }}</a>
+    </p>
+    <p class="list-item">
+      Email: <a class="item">{{ user.email }}</a>
+    </p>
+    <p class="list-item">
+      Phone: <a class="item">{{ user.phone }}</a>
+    </p>
+    <p class="list-item">
+      Website: <a class="item">{{ user.website }}</a>
+    </p>
+  </div>
 </template>
 
 <script>
-export default {
-  props: {
-    users:{
-
-    }
-  },
-};
+export default {};
 </script>
 <style scoped>
 .list {

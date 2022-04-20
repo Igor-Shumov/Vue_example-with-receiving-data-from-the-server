@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="{ active: id === page, deactive: Viewed }">
+  <button class="btn" :class="{ active: id === $store.state.page, deactive: Viewed }">
     {{ id }}
   </button>
   <span> {{ username }} </span>
@@ -8,9 +8,8 @@
 <script>
 export default {
   props: {
-    id: {},
-    username: {},
-    page: {},
+    id: { type: Number, required: true },
+    username: { type: String, required: true },
   },
   data() {
     return {
@@ -19,8 +18,7 @@ export default {
   },
 
   updated() {
-    if (this.id === 1) this.Viewed = true;
-    else if (this.id === this.page) this.Viewed = true;
+    if (this.id === 1 || this.id === this.$store.state.page) this.Viewed = true;
   },
 };
 </script>

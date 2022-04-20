@@ -3,10 +3,10 @@
     <div class="card">
       <h1>JSON Placeholder</h1>
       <div class="list">
-        <user-card :users="UserPage" />
-        <user-buttons :users="users" :page="page" @newId="PageNumber" />
+        <user-card />
+        <user-buttons />
       </div>
-      <nav-buttons :page="page" @PageChange="PageNumber" :users="users.length"/>
+      <nav-buttons />
     </div>
   </div>
 </template>
@@ -15,6 +15,7 @@
 import UserCard from "./components/UserCard.vue";
 import UserButtons from "./components/UserButtons.vue";
 import NavButtons from "./components/NavButtons.vue";
+import { /* mapGetters */ mapActions } from "vuex";
 
 export default {
   name: "App",
@@ -25,32 +26,10 @@ export default {
       page: 1,
     };
   },
-  methods: {
-    async fetchUsers() {
-      try {
-        const res = await fetch("https://jsonplaceholder.typicode.com/users?_limit=5");
-        const users = await res.json();
-        this.users = users;
-        this.$store.state.users = users;
-        console.log(this.$store.state.users)
-      } catch (e) {
-        alert("Ошибка получения данных");
-      }
-    },
-    PageNumber(id) {
-      this.page = id;
-      this.$store.state.page = this.page;
-    },
-  },
+  methods: mapActions(["fetchUsers"]),
   mounted() {
     this.fetchUsers();
   },
-
-  computed: {
-    UserPage() {
-      return this.users.filter((item) => item.id === this.page);
-      
-    },
-  },
+ /*  computed: mapGetters(["AllUsers"]), */
 };
 </script>
